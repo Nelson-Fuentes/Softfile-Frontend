@@ -29,10 +29,13 @@
     outline: none;
     background: transparent;
     width: auto;
+    display: table-cell;
 }
 
 .search-box {
     border: 1px solid #b0b0b0;
+    display: flex;
+    width: 100%;
 }
 
 .footer-profile {
@@ -57,20 +60,4 @@
 .user_profile_mini {
     height: 70%;
     margin: 1em;
-}
-
-.footer-profile button {
-    font-weight: bold;
-    padding: 0.5em;
-    box-sizing: border-box;
-    border: 1px solid #b0b0b0;
-    outline: none;
-    color: #4c8cf4;
-}
-
-.footer-profile button:hover {
-    font-weight: bolder;
-    border: none;
-    background-color: #4c8cf4;
-    color: white;
 }

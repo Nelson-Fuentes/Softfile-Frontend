@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  @Output() title_catch_event = new EventEmitter<string>();
+  public title : string = "Dashboard"
   constructor() { }
 
   ngOnInit(): void {
+    this.title_catch_event.emit(this.title);
   }
 
 }

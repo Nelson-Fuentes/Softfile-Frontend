@@ -1,18 +1,24 @@
-.admin-container{
+.admin-container {
     position: fixed;
     width: 75%;
     margin: 0px;
     padding: 0px;
-    background-color: red;
+    background-color: #F4F2F2;
     height: 100%;
     left: 25%;
     overflow-y: auto;
 }
-.sidebar{
+
+.sidebar {
     position: fixed;
     width: 25%;
     margin: 0px;
     padding: 0px;
     height: 100%;
     overflow-y: auto;
+}
+
+.fullscreen {
+    width: 100%;
+    left: 0;
 }

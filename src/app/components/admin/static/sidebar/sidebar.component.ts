@@ -9,11 +9,7 @@ import { Resource } from '../../../../models/resource'
 export class SidebarComponent implements OnInit {
 
   public resources: Resource [] = [
-    new Resource ("Dashboard 0", "fa fa-bar-chart", ""),
-    new Resource ("Dashboard 1", "fa fa-bar-chart", "#"),
-    new Resource ("Dashboard 2", "fa fa-bar-chart", "#"),
-    new Resource ("Dashboard 3", "fa fa-bar-chart", "#"),
-    new Resource ("Dashboard 4", "fa fa-bar-chart", "#"),
+    new Resource ("Dashboard", "fa fa-bar-chart", "dashboard"),
   ]
 
   constructor() { }
