@@ -4,7 +4,14 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: "admin", component: AdminComponent }
+  { path: "admin", component: AdminComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: './components/admin/admin.module#AdminModule'
+      }
+    ]
+  }
 ];
 
 @NgModule({

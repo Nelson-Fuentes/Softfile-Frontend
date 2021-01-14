@@ -10,7 +10,7 @@
     <div class="menu-item-box">
         <div *ngFor="let item of resources" class="row">
             <div class="col-12 item-menu">
-                <a href="{{ item.url }}">
+                <a [routerLink]="[ item.url ]" routerLinkActive="active">
                     <p class="p-3 rounded-pill"><i class="{{ item.icon_class }} pl-3 pr-3"></i>{{ item.label }}</p>
                 </a>
             </div>
@@ -19,5 +19,9 @@
     <div class="mb-3"></div>
 </div>
 <div class="footer-profile ">
-    vs
+    <img src="/assets/img/user_icon.png" alt="perfil de usuario" class="user_profile_mini">
+    <div>
+        <span>Nombre de Usuario</span><br>
+        <button class="rounded-pill item-menu">Perfil de Usuario</button>
+    </div>
 </div>
