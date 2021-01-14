@@ -1,0 +1,23 @@
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <img src="./assets/img/logo.png" alt="softfile-logo" class="col-5">
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 item-menu">
+            <p class="p-3 rounded-pill search-box"><i class="fa fa-search pl-3 pr-3"></i><input type="text" placeholder="Buscar"></p>
+        </div>
+    </div>
+    <div class="menu-item-box">
+        <div *ngFor="let item of resources" class="row">
+            <div class="col-12 item-menu">
+                <a href="{{ item.url }}">
+                    <p class="p-3 rounded-pill"><i class="{{ item.icon_class }} pl-3 pr-3"></i>{{ item.label }}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3"></div>
+</div>
+<div class="footer-profile ">
+    vs
+</div>
