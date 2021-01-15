@@ -1,5 +1,5 @@
-<h1 class="fw-bolder">Titulo</h1>
-<app-form-template *ngIf="true == true; else none"></app-form-template>
+<h1 class="fw-bolder">{{ getTitle() }}</h1>
+<app-form-template *ngIf="isForm(); else none"></app-form-template>
 <ng-template #none>
-    <router-outlet></router-outlet>
+    <router-outlet #none></router-outlet>
 </ng-template>

@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ModuleDataService } from 'src/app/services/module_data/module-data.serv
   templateUrl: './module-template.component.html',
   styleUrls: ['./module-template.component.css']
 })
-export class ModuleTemplateComponent implements OnInit {
+export class ModuleTemplateComponent implements OnInit, OnDestroy {
 
 
   constructor(
@@ -15,6 +15,22 @@ export class ModuleTemplateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.moduleDataService.title = "";
+  }
+
+  public getTitle(): string{
+    return this.moduleDataService.title;
+  }
+
+  public getAction(): number | undefined{
+    return this.moduleDataService.action;
+  }
+
+  public isForm(): boolean {
+    return this.moduleDataService.isForm();
   }
 
 }

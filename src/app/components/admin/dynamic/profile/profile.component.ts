@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  public title: string = "Perfil de usuario";
+
+  constructor(
+    private moduleDataService: ModuleDataService
+  ) {
+    this.moduleDataService.title = this.title;
+    this.moduleDataService.action = this.moduleDataService.ACTION_FORM;
+  }
 
   ngOnInit(): void {
   }

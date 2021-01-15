@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,18 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  @Output() title_catch_event = new EventEmitter<string>();
   public title : string = "Dashboard"
-  constructor() { }
+
+
+  constructor(
+    private moduleDataService: ModuleDataService
+  ) {
+    this.moduleDataService.title = this.title;
+    this.moduleDataService.action = undefined;
+  }
 
   ngOnInit(): void {
-    this.title_catch_event.emit(this.title);
+
   }
 
 }
