@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

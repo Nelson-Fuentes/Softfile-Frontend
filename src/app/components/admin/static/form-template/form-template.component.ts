@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-form-template',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormTemplateComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private location : Location
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public cancel_operation(){
+    this.location.back();
   }
 
 }

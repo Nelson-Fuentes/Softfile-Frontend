@@ -1,30 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormTemplateComponent } from './static/form-template/form-template.component';
+import { AdminComponent } from './admin.component';
+import { HeaderComponent } from './static/header/header.component';
+import { ModuleTemplateComponent } from './static/module-template/module-template.component';
+import { SidebarComponent } from './static/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 
-import { AdminRoutes } from './admin-routing.module';
-import { SidebarComponent } from './static/sidebar/sidebar.component';
-import { AdminComponent } from './admin.component';
-import { DashboardComponent } from './dynamic/dashboard/dashboard.component';
-import { HeaderComponent } from './static/header/header.component';
-import { ProfileComponent } from './dynamic/profile/profile.component';
-import { ModuleTemplateComponent } from './static/module-template/module-template.component';
-import { FormTemplateComponent } from './static/form-template/form-template.component';
-
+import { ProfileModule } from './dynamic/profile/profile.module';
+import { DashboardModule } from './dynamic/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
-    SidebarComponent,
     AdminComponent,
-    DashboardComponent,
+    FormTemplateComponent,
     HeaderComponent,
-    ProfileComponent,
     ModuleTemplateComponent,
-    FormTemplateComponent
+    SidebarComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(AdminRoutes)
-  ]
+    RouterModule,
+    ProfileModule,
+    DashboardModule
+  ],
+  bootstrap : [  AdminComponent ]
 })
 export class AdminModule { }

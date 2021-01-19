@@ -1,2 +1,7 @@
-<p>form-template works!</p>
-<router-outlet></router-outlet>
+<form (submit)="false">
+    <router-outlet></router-outlet>
+    <div class="nav justify-content-end col-12">
+        <div type="submit" class="btn btn-danger mr-3" (click)="cancel_operation()">Cancelar</div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </div>
+</form>

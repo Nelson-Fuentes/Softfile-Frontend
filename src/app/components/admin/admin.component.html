@@ -1,7 +1,7 @@
 <div class="sidebar" [ngClass]="{ 'd-none': full_screen_flag == true }">
     <app-sidebar></app-sidebar>
 </div>
-<div class="admin-container" [ngClass]="{ 'fullscreen': full_screen_flag == true }">
+<div class="admin-container overflow-auto" [ngClass]="{ 'fullscreen': full_screen_flag == true }">
     <div class="container mt-4 pl-4 pr-4">
         <app-header (full_screen_event)="setFullScreen($event)"></app-header>
         <div class="bg-white p-3 mt-3 rounded">
