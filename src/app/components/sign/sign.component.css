@@ -1,0 +1,43 @@
+.background-sign {
+    position: absolute;
+    background-image: url('/assets/img/sign_wallpaper.jpeg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.background-sign-gradient {
+    width: 100%;
+    height: 100%;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 18, 0.9) 0%, rgba(9, 9, 121, 0.6) 35%, rgba(0, 212, 255, 0.3) 100%);
+    overflow-y: hidden;
+}
+
+.container {
+    position: relative;
+    width: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    max-height: 90%;
+    background-color: white;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        position: relative;
+        width: 75%;
+        transform: translateY(-50%);
+        max-height: 95%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .container {
+        position: relative;
+        width: 100%;
+        transform: translateY(-50%);
+        max-height: 100%;
+    }
+}
