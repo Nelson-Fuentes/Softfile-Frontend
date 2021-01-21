@@ -2,25 +2,38 @@
     <div class="mb-3 form-group">
         <label for="username_input" class="form-label">Nombre de Usuario</label>
         <input type="text" class="form-control" id="username_input" formControlName="username" [ngClass]="{ 'is-invalid' : get_field('username')?.invalid && get_field('username')?.touched }">
-        <div>
-            <small class="form-text text-muted text-danger">We'll never share your email with anyone else.</small>
+        <div *ngIf="get_field('username')?.invalid && (get_field('username')?.dirty || get_field('username')?.touched)" class="text-danger">
+            <small *ngIf="get_field('username')?.errors?.required" class="form-text">Ingrese un nombre de usuario.</small>
         </div>
     </div>
     <div class="mb-3 form-group">
         <label for="firstname_input" class="form-label">Nombres</label>
         <input type="text" class="form-control" id="firstname_input" formControlName="firstname" [ngClass]="{ 'is-invalid' : get_field('firstname')?.invalid && get_field('firstname')?.touched }">
+        <div *ngIf="get_field('firstname')?.invalid && (get_field('firstname')?.dirty || get_field('firstname')?.touched)" class="text-danger">
+            <small *ngIf="get_field('firstname')?.errors?.required" class="form-text">Ingrese sus nombres.</small>
+        </div>
     </div>
     <div class="mb-3 form-group">
         <label for="lastname_input" class="form-label">Apellidos</label>
         <input type="text" class="form-control" id="last_input" formControlName="lastname" [ngClass]="{ 'is-invalid' : get_field('lastname')?.invalid && get_field('lastname')?.touched }">
+        <div *ngIf="get_field('lastname')?.invalid && (get_field('lastname')?.dirty || get_field('lastname')?.touched)" class="text-danger">
+            <small *ngIf="get_field('lastname')?.errors?.required" class="form-text">Ingrese sus apellidos.</small>
+        </div>
     </div>
     <div class="mb-3 form-group">
         <label for="password_input" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="password_input" formControlName="password1" [ngClass]="{ 'is-invalid' : get_field('password1')?.invalid && get_field('password1')?.touched }">
+        <div *ngIf="get_field('password1')?.invalid && (get_field('password1')?.dirty || get_field('password1')?.touched)" class="text-danger">
+            <small *ngIf="get_field('password1')?.errors?.required" class="form-text">Ingrese una contraseña.</small>
+        </div>
     </div>
     <div class="mb-3 form-group">
         <label for="password2_input" class="form-label">Repetir Contraseña</label>
         <input type="password" class="form-control" id="password2_input" formControlName="password2" [ngClass]="{ 'is-invalid' : get_field('password2')?.invalid && get_field('password2')?.touched }">
+        <div *ngIf="get_field('password2')?.invalid && (get_field('password2')?.dirty || get_field('password2')?.touched)" class="text-danger">
+            <small *ngIf="get_field('password2')?.errors?.required" class="form-text">Ingrese vuelva a ingresar su contraseña.</small>
+            <small *ngIf="get_field('password2')?.errors?.password" class="form-text">Las contraseñas no coinciden.</small>
+        </div>
     </div>
     <div class="d-flex justify-content-end mt-3">
         <button type="submit" class="btn btn-danger mr-3">Cancelar</button>
