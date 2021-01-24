@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
 
 @Component({

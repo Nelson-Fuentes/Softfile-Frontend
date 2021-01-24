@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user';
 import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -11,10 +14,13 @@ export class RegisterComponent implements OnInit {
 
   private title: string = "Registro de Usuario"
   public form_register: FormGroup;
+  public user: User = new User('', '', '', '');
 
   constructor(
     private moduleDataService: ModuleDataService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService,
+    private userService: UserService
   ) {
     this.moduleDataService.title = this.title;
     this.form_register = this.formBuilder.group({
@@ -30,7 +36,12 @@ export class RegisterComponent implements OnInit {
   }
 
   public user_register(){
-
+    this.userService.add_user(this.user).subscribe( user => {
+      console.log(user);
+      this.toastrService.success('EL usuario ' + user.username + ' ha sido registrado con exito.', user.firstname + ' has sido registrado')
+    }, error =>{
+      this.toastrService.error(error.error.message, 'No se pudo registrar el usuario..')
+    });
   }
 
   public get_field(tag: string){
@@ -47,5 +58,9 @@ export class RegisterComponent implements OnInit {
       }
       return !response ? {password: {value: control.value}} : null;
     };
+  }
+
+  public cancel(){
+    console.log('cancelar');
   }
 }
