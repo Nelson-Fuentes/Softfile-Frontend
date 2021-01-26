@@ -21,6 +21,14 @@
         </div>
     </div>
     <div class="mb-3 form-group">
+        <label for="email_input" class="form-label">Correo Electronico</label>
+        <input type="text" class="form-control" id="email_input" formControlName="email" [ngClass]="{ 'is-invalid' : get_field('email')?.invalid && get_field('email')?.touched } " [(ngModel)]="user.email">
+        <div *ngIf="get_field('email')?.invalid && (get_field('email')?.dirty || get_field('email')?.touched)" class="text-danger">
+            <small *ngIf="get_field('email')?.errors?.required" class="form-text">Ingrese un correo electronico.</small>
+            <small *ngIf="get_field('email')?.errors?.email" class="form-text">Formato invalido de correo.</small>
+        </div>
+    </div>
+    <div class="mb-3 form-group">
         <label for="password_input" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="password_input" formControlName="password1" [ngClass]="{ 'is-invalid' : get_field('password1')?.invalid && get_field('password1')?.touched }" [(ngModel)]="user.password">
         <div *ngIf="get_field('password1')?.invalid && (get_field('password1')?.dirty || get_field('password1')?.touched)" class="text-danger">

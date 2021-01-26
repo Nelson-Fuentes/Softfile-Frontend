@@ -1,3 +1,5 @@
+import {  Email } from './email';
+
 export class User{
 
   constructor (
@@ -5,6 +7,7 @@ export class User{
     public firstname: string,
     public lastname: string,
     public password?: string,
+    public email?: string | Email [],
     public _id?: string,
   ){}
 

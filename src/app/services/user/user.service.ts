@@ -15,7 +15,7 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  public add_user(user: User){
-    return this.httpClient.post<User>(base_api_url, user);
+  public add_user(data: any){
+    return this.httpClient.post<User>(base_api_url, data);
   };
 }
