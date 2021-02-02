@@ -8,11 +8,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { ResetPasswordRequestComponent } from './resetpasswordrequest/resetpasswordrequest.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, SignComponent, RegisterComponent, ConfirmComponent],
+  declarations: [LoginComponent, SignComponent, RegisterComponent, ConfirmComponent, ResetPasswordRequestComponent, ResetpasswordComponent],
   imports: [
     CommonModule,
     RouterModule,

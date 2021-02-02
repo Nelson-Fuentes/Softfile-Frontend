@@ -5,7 +5,7 @@ import { ModuleDataService } from 'src/app/services/module_data/module-data.serv
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user/user.service';
 import { Location }  from '@angular/common';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public user_register(){
-    let redirecTo =  window.location.href.replace(this.location.path(), '') + "/sign/in";
+    let redirecTo =  window.location.href.replace(this.location.path(), '') + "/sign/confirm";
       this.userService.add_user({
       username: this.user.username,
       firstname: this.user.firstname,
@@ -74,6 +74,6 @@ export class RegisterComponent implements OnInit {
   }
 
   public cancel(){
-    console.log('cancelar');
+    this.router.navigate(['sign/in'])
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { error } from 'protractor';
 import { EmailService } from 'src/app/services/email/email.service';
 import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm',
@@ -19,7 +19,8 @@ export class ConfirmComponent implements OnInit {
     private moduleDataService : ModuleDataService,
     private activatedRoute: ActivatedRoute,
     private emailService: EmailService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {
     this.moduleDataService.title = this.title;
     this.token = this.activatedRoute.snapshot.params.token;
@@ -27,7 +28,9 @@ export class ConfirmComponent implements OnInit {
       this.toastrService.success(message.message, 'Validación exitosa');
     }, error => {
       this.toastrService.error(error.error.message, 'No se pudo validar su correo.')
-    } );
+    }, () => {
+      this.router.navigate(['sign/in']);
+    });
    }
 
   ngOnInit(): void {
