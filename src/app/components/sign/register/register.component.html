@@ -43,11 +43,11 @@
             <small *ngIf="get_field('password2')?.errors?.password" class="form-text">Las contraseñas no coinciden.</small>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <span type="submit" class="btn btn-danger mr-3 col" (click)="cancel()">Cancelar</span>
-            <span class="col-1"></span>
-            <button type="submit" class="btn btn-primary ml-3 col" [disabled]="form_register.invalid">Registrar</button>
+    <div class="row">
+        <div class="btn-group col">
+            <button type="submit" class="btn btn-primary col" [disabled]="form_register.invalid">Registrar</button>
+            <span type="submit" class="btn btn-danger col" (click)="cancel()">Cancelar</span>
         </div>
+
     </div>
 </form>

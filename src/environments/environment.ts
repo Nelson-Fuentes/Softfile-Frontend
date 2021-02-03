@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  softfile_api_url : 'http://localhost:3000/api/v1/'
+  softfile_api_url : 'http://localhost:3000/api/v1/',
+  token_authentication_key : 'token_authentiation'
 };
 
 /*

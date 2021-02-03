@@ -13,6 +13,10 @@ export class AuthService {
     private httpClient: HttpClient
   ) { }
 
+  public authentication(username: string, password: string){
+    return this.httpClient.post<{ token:string }>(base_api_url, { username, password });
+  }
+
   public request_reset_password(email: string, redirectTo: string){
     return this.httpClient.post<{ message: string }>(base_api_url+"/reset", { email, redirectTo });
   }
