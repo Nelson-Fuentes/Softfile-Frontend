@@ -22,6 +22,6 @@ export class AuthService {
   }
 
   public reset_password(token:string, password: string){
-    return this.httpClient.post<{ message: string}>(base_api_url+ "/password/" + token, { password })
+    return this.httpClient.put<{ message: string}>(base_api_url+ "/password/" + token, { password })
   }
 }
