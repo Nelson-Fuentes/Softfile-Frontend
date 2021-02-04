@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
   }
 
   setFullScreen(flag: boolean){
-    this.full_screen_flag = flag;
+    this.full_screen_flag = !this.full_screen_flag;
   }
 
 }

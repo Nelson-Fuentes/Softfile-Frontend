@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Resource } from '../../../../models/resource'
 
 @Component({
@@ -12,9 +12,15 @@ export class SidebarComponent implements OnInit {
     new Resource ("Dashboard", "fa fa-bar-chart", "dashboard"),
   ]
 
+  @Output() full_screen_event = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public hide(){
+    this.full_screen_event.emit(false);
   }
 
 }

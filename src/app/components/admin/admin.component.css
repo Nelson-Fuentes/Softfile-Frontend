@@ -16,9 +16,26 @@
     padding: 0px;
     height: 100%;
     overflow-y: auto;
+    background-color: white;
 }
 
 .fullscreen {
     width: 100%;
     left: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .admin-container {
+        width: 100%;
+        left: 0;
+    }
+    .sidebar {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .sidebar {
+        width: 100%;
+    }
 }

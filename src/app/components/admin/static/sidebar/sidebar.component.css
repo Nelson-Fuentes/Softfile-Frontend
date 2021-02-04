@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+.row {
+    width: 90%;
+    margin: 0px;
+}
+
 .item-menu :hover {
     background: #E0EBFE;
     color: #4c8cf4;
