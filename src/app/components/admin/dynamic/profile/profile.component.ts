@@ -11,6 +11,7 @@ import { User } from '../../../../models/user';
 export class ProfileComponent implements OnInit {
 
   public title: string = "Perfil de usuario";
+  public reader:FileReader = new FileReader();
   public profile = new Profile(
     new User('Nelson-Fuentes', 'Nelson Alejandro', 'Fuentes Paredes'),
     'Software Developer'
@@ -25,32 +26,31 @@ export class ProfileComponent implements OnInit {
   }
 
   public change_profile(event: any){
-    if (event.target.files && event.target.files[0]) {
+    const image_profile = document.getElementById('profile_image');
+    this.change_image(event, (e:any) => {
+      this.profile.image = this.reader.result?.toString() + ''
+      image_profile?.setAttribute('src', this.profile.image);
 
-      const reader = new FileReader();
-
-      const file = event.target.files[0];
-
-      reader.readAsDataURL(file);
-      reader.onload = (e) =>{
-        this.profile.image = reader.result?.toString();
-      }
-
-  }  }
+    })
+  }
 
   public change_wallpaper(event: any){
-    if (event.target.files && event.target.files[0]) {
-
-      const reader = new FileReader();
-
-      const file = event.target.files[0];
-
-      reader.readAsDataURL(file);
-      reader.onload = (e) =>{
-        this.profile.wallpaper = reader.result?.toString();
+    const wallpaper_image = document.getElementById('profile_wallpaper');
+    this.change_image(event, (e: any)=> {
+      this.profile.wallpaper = this.reader.result + '';
+      if (wallpaper_image ){
+        wallpaper_image.style.backgroundImage = "url('"+ this.profile.wallpaper +"')";
       }
+    })
+  }
 
-  }  }
+  public change_image(event: any, trigger: any){
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      this.reader.readAsDataURL(file);
+      this.reader.onload = trigger;
+    }
+  }
 
   ngOnInit(): void {
   }

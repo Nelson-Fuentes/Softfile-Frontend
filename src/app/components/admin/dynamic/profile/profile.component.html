@@ -39,9 +39,9 @@
     </div>
     <div class="profile-part profile-view" id="preview">
         <h2>Vista Previa</h2>
-        <div class="profile-preview rounded shadow" style="background-image: url('{{ profile.get_wallpaper() }}')">
+        <div class="profile-preview rounded shadow" id="profile_wallpaper" style="background-image: url('{{ profile.get_wallpaper() }}')">
             <div class="h-50 gradient d-flex justify-content-center">
-                <img [src]=" profile.get_image() " class="w-5 rounded-circle user-profile shadow-sm" alt="">
+                <img [src]=" profile.get_image() " id="profile_image" class="w-5 rounded-circle user-profile shadow-sm" alt="">
             </div>
             <div class="polygon">
                 <div class="info">
@@ -51,5 +51,13 @@
                 </div>
             </div>
         </div>
+        <p class="text-danger preview-no-warning">Vista previa disponible solo en versión de escritorio</p>
+        <div class="row mt-5">
+            <div class="btn-group col">
+                <button type="submit" class="btn btn-primary col">Guardar</button>
+                <span type="submit" class="btn btn-danger col">Cancelar</span>
+            </div>
+        </div>
+
     </div>
 </section>

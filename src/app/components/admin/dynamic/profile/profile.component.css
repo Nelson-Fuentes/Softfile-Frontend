@@ -57,3 +57,28 @@
 .profile-preview .info .description {
     text-align: justify;
 }
+
+.preview-no-warning {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        display: initial;
+    }
+    .profile-part {
+        width: 100%;
+        float: unset;
+    }
+    .profile-preview {
+        display: none;
+    }
+    .profile-view {
+        position: relative;
+        left: 5%;
+        width: 90%;
+    }
+    .preview-no-warning {
+        display: initial;
+    }
+}
