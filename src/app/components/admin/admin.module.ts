@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormTemplateComponent } from './static/form-template/form-template.component';
 import { AdminComponent } from './admin.component';
 import { HeaderComponent } from './static/header/header.component';
 import { ModuleTemplateComponent } from './static/module-template/module-template.component';
@@ -13,7 +12,6 @@ import { DashboardModule } from './dynamic/dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AdminComponent,
-    FormTemplateComponent,
     HeaderComponent,
     ModuleTemplateComponent,
     SidebarComponent

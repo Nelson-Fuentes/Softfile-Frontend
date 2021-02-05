@@ -1,0 +1,59 @@
+.container {
+    margin: 0 auto;
+    display: flex;
+}
+
+.profile-form {
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.profile-preview {
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.profile-part {
+    width: 50%;
+    float: left;
+}
+
+.profile-preview .gradient {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 35%, rgba(255, 255, 255, 0) 100%);
+}
+
+.profile-preview .polygon {
+    width: 100%;
+    height: 75%;
+    background-color: white;
+    clip-path: polygon(50% 25%, 100% 0, 100% 100%, 0 100%, 0 0);
+    position: relative;
+    top: -25%;
+}
+
+.profile-preview .user-profile {
+    height: 75%;
+    top: 25%;
+    position: relative;
+    z-index: 100;
+    align-self: center;
+    border: 3px solid white;
+}
+
+.profile-preview .info {
+    width: 100%;
+    overflow-y: auto;
+    position: relative;
+    height: 60%;
+    top: 40%;
+    text-align: center;
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+.profile-preview .info .description {
+    text-align: justify;
+}

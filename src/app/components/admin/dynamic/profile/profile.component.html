@@ -1,70 +1,55 @@
-<fieldset>
-    <h2>Datos Personales</h2>
-    <div class="row">
-        <div class="col-6">
-            <div class="row">
-                <div class="col-12 form-group">
-                    <label for="first_name_input" class="form-label">Nombres</label>
-                    <input type="text" class="form-control" id="first_name_  input">
-                    <div class="form-text text-danger">We'll never share your email with anyone else.</div>
-                </div>
+<section class="container">
+    <div class="profile-part profile-form" id="form">
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="first_name_input" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="first_name_ input" [(ngModel)]="profile.user.firstname">
             </div>
-            <div class="row">
-                <div class="col-12 form-group">
-                    <label for="last_name_input" class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" id="last_name_input">
-                    <div class="form-text text-danger">We'll never share your email with anyone else.</div>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="last_name_input" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="last_name_input" [(ngModel)]="profile.user.lastname">
             </div>
-            <div class="row">
-                <div class="col-6 form-group">
-                    <label for="country_input" class="form-label">Pais</label>
-                    <input type="text" class="form-control" id="country_input">
-                    <div class="form-text text-danger">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="col-6 form-group">
-                    <label for="city_input" class="form-label">Ciudad</label>
-                    <input type="text" class="form-control" id="city_input">
-                    <div class="form-text text-danger">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="last_name_input" class="form-label">Especialidad</label>
+                <input type="input" class="form-control" id="last_name_input" [(ngModel)]="profile.field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-12">
+                <label>Foto de Perfil</label><br>
+                <input type="file" class="form-control" id="inputGroupFile01" (change)="change_profile($event)" accept='image/*'>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-12">
+                <label>Fondo</label><br>
+                <input type="file" class="form-control" id="inputGroupFile01" (change)="change_wallpaper($event)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="description_input" class="form-label">Descripción</label>
+                <ckeditor [(ngModel)]="profile.description"></ckeditor>
+            </div>
+        </div>
+    </div>
+    <div class="profile-part profile-view" id="preview">
+        <h2>Vista Previa</h2>
+        <div class="profile-preview rounded shadow" style="background-image: url('{{ profile.get_wallpaper() }}')">
+            <div class="h-50 gradient d-flex justify-content-center">
+                <img [src]=" profile.get_image() " class="w-5 rounded-circle user-profile shadow-sm" alt="">
+            </div>
+            <div class="polygon">
+                <div class="info">
+                    <h2 class="align-ce">{{ profile.user.firstname }} {{ profile.user.lastname }}</h2> <br>
+                    <h4>{{ profile.field }}</h4>
+                    <div class="description" [innerHTML]="profile.description"></div>
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <input type="file" class="form-control" id="first_name_  input">
-        </div>
     </div>
-</fieldset>
-<div class="row">
-    <div class="col-12 form-group">
-        <label for="email_input" class="form-label">Correo Electronico</label>
-        <div class="input-group">
-            <button class="input-group-text bg-primary text-white">Verificar</button>
-            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Username" id="email_input">
-        </div>
-    </div>
-
-</div>
-<div class="row">
-    <div class="col-12 form-group">
-        <label for="description_input" class="form-label">Descripción</label>
-        <ckeditor></ckeditor>
-        <div class="form-text text-danger">We'll never share your email with anyone else.</div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-4 form-group">
-        <label for="facebook_input" class="form-label">Facebook</label>
-        <input type="text" class="form-control" id="facebook_input">
-        <div class="form-text text-danger">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="col-4 form-group">
-        <label for="twitter_input" class="form-label">Twitter</label>
-        <input type="text" class="form-control" id="twitter_input">
-        <div class="form-text text-danger">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="col-4 form-group">
-        <label for="phone_input" class="form-label">Telefono</label>
-        <input type="text" class="form-control" id="phone_input">
-        <div class="form-text text-danger">We'll never share your email with anyone else.</div>
-    </div>
-</div>
+</section>
