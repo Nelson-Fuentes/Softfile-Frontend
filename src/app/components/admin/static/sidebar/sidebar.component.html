@@ -1,6 +1,6 @@
-<div class="container mt-4 mb-4">
-    <div class="row">
-        <img src="./assets/img/logo.png" alt="softfile-logo" class="col-4 logo">
+<div class="container mt-4">
+    <div class="row" style="width: 85%;">
+        <img src="./assets/img/logo.png" alt="softfile-logo" class="col-auto logo">
         <div class="col"></div>
         <div class="col-1 d-flex align-items-center">
             <button class="btn btn-light btn-lg" (click)="hide()">
@@ -9,14 +9,14 @@
         </div>
 
     </div>
-    <div class="row mt-4">
-        <div class="col-12 item-menu">
-            <p class="p-3 rounded-pill search-box"><i class="fa fa-search pl-3 pr-3"></i><input type="text" placeholder="Buscar"></p>
+    <div class="row mt-4 d-flex align-items-center">
+        <div class="col-12 item-menu d-flex align-items-center">
+            <p class="p-3 rounded-pill search-box d-flex align-items-center"><i class="fa fa-search pl-3 pr-3"></i><input type="text" placeholder="Buscar"></p>
         </div>
     </div>
     <div class="menu-item-box">
         <div *ngFor="let item of resources" class="row">
-            <div class="col-12 item-menu">
+            <div class="col-12 item-menu align-middle">
                 <a [routerLink]="[ item.url ]" routerLinkActive="active">
                     <p class="p-3 rounded-pill"><i class="{{ item.icon_class }} pl-3 pr-3"></i>{{ item.label }}</p>
                 </a>
