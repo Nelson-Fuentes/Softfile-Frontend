@@ -1,3 +1,4 @@
+import { Degree } from "./degree";
 import { User } from "./user";
 
 const PROFILE_IMAGE_DEFAULT = 'user_profile_default.jpeg';
@@ -7,7 +8,7 @@ const IMG_PATH = '/assets/img/';
 export class Profile {
   constructor(
     public user: User,
-    public field: string,
+    public degree?: Degree,
     public image?: string | undefined,
     public wallpaper?: string,
     public description?: string,

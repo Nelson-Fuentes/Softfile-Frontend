@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { HeaderComponent } from './static/header/header.component';
-import { ModuleTemplateComponent } from './static/module-template/module-template.component';
 import { SidebarComponent } from './static/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 
@@ -13,7 +12,6 @@ import { DashboardModule } from './dynamic/dashboard/dashboard.module';
   declarations: [
     AdminComponent,
     HeaderComponent,
-    ModuleTemplateComponent,
     SidebarComponent
   ],
   imports: [

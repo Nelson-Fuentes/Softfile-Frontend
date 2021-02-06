@@ -1,5 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Profile } from '../../../../models/profile';
 import { User } from '../../../../models/user';
 
@@ -11,18 +14,26 @@ import { User } from '../../../../models/user';
 export class ProfileComponent implements OnInit {
 
   public title: string = "Perfil de usuario";
-  public reader:FileReader = new FileReader();
-  public profile = new Profile(
-    new User('Nelson-Fuentes', 'Nelson Alejandro', 'Fuentes Paredes'),
-    'Software Developer'
-  );
+  public reader: FileReader = new FileReader();
+  public profile: Profile = new Profile( new User('', '', '') );
 
   constructor(
-    private moduleDataService: ModuleDataService
+    private moduleDataService: ModuleDataService,
+    private profileService: ProfileService,
+    private toastrService : ToastrService
   ) {
     this.moduleDataService.title = this.title;
     this.moduleDataService.action = this.moduleDataService.ACTION_FORM;
-    this.profile.description = '                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi a debitis perferendis incidunt laboriosam! Non corrupti iusto sed rerum! Unde illum repudiandae quisquam id libero ratione facere iste, suscipit nesciunt?';
+    this.profileService.get_profile_auth().subscribe( profile => {
+      this.profile.user = profile.user;
+      this.profile._id = profile._id;
+      this.profile.degree = profile.degree;
+      this.profile.description = profile.description;
+      this.profile.image = profile.image;
+      this.profile.wallpaper = profile.wallpaper;
+    }, err => {
+      this.toastrService.error(err.error, 'Ocurrio un error');
+    } )
   }
 
   public change_profile(event: any){
