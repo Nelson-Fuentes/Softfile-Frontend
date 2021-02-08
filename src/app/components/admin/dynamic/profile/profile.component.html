@@ -15,8 +15,11 @@
         </div>
         <div class="row">
             <div class="col-12 form-group">
-                <label for="last_name_input" class="form-label">Especialidad</label>
-                <input type="input" class="form-control" id="last_name_input" [(ngModel)]="profile.degree ">
+                <label for="degree_input" class="form-label">Especialidad</label>
+                <select class="form-select form-control" aria-label="Elige una Especialidad" id="degree_input" [(ngModel)]="profile.degree ">
+                  <option selected>Open this select menu</option>
+                  <option *ngFor="let degree of degrees" [ngValue]="degree">{{ degree.name }}</option>
+                </select>
             </div>
         </div>
         <div class="row">

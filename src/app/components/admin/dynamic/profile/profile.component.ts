@@ -1,6 +1,8 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Degree } from 'src/app/models/degree';
+import { DegreeService } from 'src/app/services/degree/degree.service';
 import { ModuleDataService } from 'src/app/services/module_data/module-data.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Profile } from '../../../../models/profile';
@@ -16,11 +18,13 @@ export class ProfileComponent implements OnInit {
   public title: string = "Perfil de usuario";
   public reader: FileReader = new FileReader();
   public profile: Profile = new Profile( new User('', '', '') );
+  public degrees: Degree[] = [];
 
   constructor(
     private moduleDataService: ModuleDataService,
     private profileService: ProfileService,
-    private toastrService : ToastrService
+    private toastrService : ToastrService,
+    private degreeService: DegreeService
   ) {
     this.moduleDataService.title = this.title;
     this.moduleDataService.action = this.moduleDataService.ACTION_FORM;
@@ -33,7 +37,14 @@ export class ProfileComponent implements OnInit {
       this.profile.wallpaper = profile.wallpaper;
     }, err => {
       this.toastrService.error(err.error, 'Ocurrio un error');
-    } )
+    } );
+    this.degreeService.get_all_degrees().subscribe(
+      degree => {
+        this.degrees = degree;
+      }, err => {
+        this.toastrService.error(err.error, 'Ocurrio un error');
+      }
+    );
   }
 
   public change_profile(event: any){

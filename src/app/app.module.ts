@@ -16,7 +16,7 @@ import { BriefcaseComponent } from './components/briefcase/briefcase.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BriefcaseComponent
+    BriefcaseComponent,
   ],
   imports: [
     BrowserModule,
