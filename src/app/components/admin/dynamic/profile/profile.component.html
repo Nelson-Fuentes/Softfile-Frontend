@@ -16,9 +16,8 @@
         <div class="row">
             <div class="col-12 form-group">
                 <label for="degree_input" class="form-label">Especialidad</label>
-                <select class="form-select form-control" aria-label="Elige una Especialidad" id="degree_input" [(ngModel)]="profile.degree ">
-                  <option selected>Open this select menu</option>
-                  <option *ngFor="let degree of degrees" [ngValue]="degree">{{ degree.name }}</option>
+                <select class="form-select form-control" id="degree_input" [(ngModel)]="profile.degree ">
+                  <option *ngFor="let degree of degrees" [ngValue]="degree" [selected]="degree._id == profile.degree?._id">{{ degree.name }}</option>
                 </select>
             </div>
         </div>
