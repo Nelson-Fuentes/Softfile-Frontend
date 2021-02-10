@@ -29,4 +29,13 @@ export class Profile {
     return IMG_PATH+ WALLPAPER_IMAGE_DEFAULT;
   }
 
+  public get_data_from(data: any){
+    this.user = data.user;
+    this._id = data._id;
+    this.degree = data.degree;
+    this.description = data.description;
+    this.image = data.image;
+    this.wallpaper = data.wallpaper;
+  }
+
 }

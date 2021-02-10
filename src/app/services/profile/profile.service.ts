@@ -21,4 +21,10 @@ export class ProfileService {
     const headers = new HttpHeaders().set('Authorization', 'token ' + token );
     return this.httpClient.get<Profile>(base_api_url+'', { headers: headers });
   }
+
+  public set_profile_auth(profile: any){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.put<Profile>(base_api_url+'', profile , { headers: headers });
+  }
 }

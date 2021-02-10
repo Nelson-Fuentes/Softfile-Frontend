@@ -1,5 +1,5 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Degree } from 'src/app/models/degree';
 import { DegreeService } from 'src/app/services/degree/degree.service';
@@ -19,22 +19,27 @@ export class ProfileComponent implements OnInit {
   public reader: FileReader = new FileReader();
   public profile: Profile = new Profile( new User('', '', '') );
   public degrees: Degree[] = [];
+  public out_action: boolean = true;
+  public form_profile: FormGroup  = this.formBuilder.group({
+    firstname: new FormControl('' , [Validators.required]),
+    lastname: new FormControl('' , [Validators.required]),
+    degree: new FormControl(),
+    image: new FormControl(),
+    wallpaper: new FormControl(),
+    description: new FormControl()
+  });
 
   constructor(
     private moduleDataService: ModuleDataService,
     private profileService: ProfileService,
     private toastrService : ToastrService,
-    private degreeService: DegreeService
+    private degreeService: DegreeService,
+    private formBuilder: FormBuilder
   ) {
     this.moduleDataService.title = this.title;
     this.moduleDataService.action = this.moduleDataService.ACTION_FORM;
     this.profileService.get_profile_auth().subscribe( profile => {
-      this.profile.user = profile.user;
-      this.profile._id = profile._id;
-      this.profile.degree = profile.degree;
-      this.profile.description = profile.description;
-      this.profile.image = profile.image;
-      this.profile.wallpaper = profile.wallpaper;
+      this.profile.get_data_from(profile);
     }, err => {
       this.toastrService.error(err.error, 'Ocurrio un error');
     } );
@@ -76,4 +81,30 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  public update_profile(){
+    this.out_action = false;
+    this.profileService.set_profile_auth({
+      firstname: this.profile.user.firstname,
+      lastname: this.profile.user.lastname,
+      description: this.profile.description,
+      image: this.profile.image,
+      wallpaper: this.profile.wallpaper,
+      degree_id: this.profile.degree?._id
+    }).subscribe(
+      profile => {
+        this.profile.get_data_from(profile);
+        this.toastrService.success('Se han actualizado los datos de tu perfil', 'Proceso exitoso')
+      }, err => {
+        this.toastrService.error(err.error, 'Ocurrio un error')
+      }, () => {
+        this.out_action = true;
+      }
+    );
+  }
+
+  public get_field(tag: string){
+    return this.form_profile.get(tag)
+  }
+
 }

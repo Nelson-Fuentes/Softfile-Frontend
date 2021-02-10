@@ -1,66 +1,73 @@
 <h1>{{ title}}</h1>
-<section class="container">
-    <div class="profile-part profile-form" id="form">
-        <div class="row">
-            <div class="col-12 form-group">
-                <label for="first_name_input" class="form-label">Nombres</label>
-                <input type="text" class="form-control" id="first_name_ input" [(ngModel)]="profile.user.firstname">
+<form [formGroup]="form_profile" (ngSubmit)="update_profile()">
+    <section class="container">
+        <div class="profile-part profile-form" id="form">
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="firstname_input" class="form-label">Nombres</label>
+                    <input type="text" class="form-control" id="firstname_input" formControlName="firstname" [(ngModel)]="profile.user.firstname" [ngClass]="{ 'is-invalid' : get_field('firstname')?.invalid && get_field('firstname')?.touched }">
+                    <div *ngIf="get_field('firstname')?.invalid && (get_field('firstname')?.dirty || get_field('firstname')?.touched)" class="text-danger">
+                        <small *ngIf="get_field('firstname')?.errors?.required" class="form-text">Ingrese sus nombres.</small>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 form-group">
-                <label for="last_name_input" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" id="last_name_input" [(ngModel)]="profile.user.lastname">
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="last_name_input" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="last_name_input" formControlName="lastname" [(ngModel)]="profile.user.lastname" [ngClass]="{ 'is-invalid' : get_field('lastname')?.invalid && get_field('lastname')?.touched }">
+                    <div *ngIf="get_field('lastname')?.invalid && (get_field('lastname')?.dirty || get_field('lastname')?.touched)" class="text-danger">
+                        <small *ngIf="get_field('lastname')?.errors?.required" class="form-text">Ingrese sus apellidos..</small>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 form-group">
-                <label for="degree_input" class="form-label">Especialidad</label>
-                <select class="form-select form-control" id="degree_input" [(ngModel)]="profile.degree ">
-                  <option *ngFor="let degree of degrees" [ngValue]="degree" [selected]="degree._id == profile.degree?._id">{{ degree.name }}</option>
-                </select>
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="degree_input" class="form-label">Especialidad</label>
+                    <select class="form-select form-control" id="degree_input" [(ngModel)]="profile.degree" formControlName="degree">
+                      <option *ngFor="let degree of degrees" [ngValue]="degree" [selected]="degree._id == profile.degree?._id">{{ degree.name }}</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-12">
-                <label>Foto de Perfil</label><br>
-                <input type="file" class="form-control" id="inputGroupFile01" (change)="change_profile($event)" accept='image/*'>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label>Foto de Perfil</label><br>
+                    <input type="file" class="form-control" id="image_input" (change)="change_profile($event)" accept='image/*' formControlName="image">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-12">
-                <label>Fondo</label><br>
-                <input type="file" class="form-control" id="inputGroupFile01" (change)="change_wallpaper($event)">
+            <div class="row">
+                <div class="form-group col-12">
+                    <label>Fondo</label><br>
+                    <input type="file" class="form-control" id="wallpaper_input" (change)="change_wallpaper($event)" formControlName="wallpaper">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 form-group">
-                <label for="description_input" class="form-label">Descripción</label>
-                <ckeditor [(ngModel)]="profile.description"></ckeditor>
-            </div>
-        </div>
-    </div>
-    <div class="profile-part profile-view" id="preview">
-        <h2>Vista Previa</h2>
-        <div class="profile-preview rounded shadow" id="profile_wallpaper" style="background-image: url('{{ profile.get_wallpaper() }}')">
-            <div class="h-50 gradient d-flex justify-content-center">
-                <img [src]=" profile.get_image() " id="profile_image" class="w-5 rounded-circle user-profile shadow-sm" alt="">
-            </div>
-            <div class="polygon">
-                <div class="info">
-                    <h2 class="align-ce">{{ profile.user.firstname }} {{ profile.user.lastname }}</h2> <br>
-                    <h4>{{ profile.degree?.name }}</h4>
-                    <div class="description" [innerHTML]="profile.description"></div>
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="description_input" class="form-label">Descripción</label>
+                    <ckeditor [(ngModel)]="profile.description" formControlName="description"></ckeditor>
                 </div>
             </div>
         </div>
-        <p class="text-danger preview-no-warning">Vista previa disponible solo en versión de escritorio</p>
-        <div class="row mt-5">
-            <div class="btn-group col">
-                <button type="submit" class="btn btn-primary col">Guardar</button>
-                <span type="submit" class="btn btn-danger col">Cancelar</span>
+        <div class="profile-part profile-view" id="preview">
+            <h2>Vista Previa</h2>
+            <div class="profile-preview rounded shadow" id="profile_wallpaper" style="background-image: url('{{ profile.get_wallpaper() }}')">
+                <div class="h-50 gradient d-flex justify-content-center">
+                    <img [src]=" profile.get_image() " id="profile_image" class="w-5 rounded-circle user-profile shadow-sm" alt="">
+                </div>
+                <div class="polygon">
+                    <div class="info">
+                        <h2 class="align-ce">{{ profile.user.firstname }} {{ profile.user.lastname }}</h2> <br>
+                        <h4>{{ profile.degree?.name }}</h4>
+                        <div class="description" [innerHTML]="profile.description"></div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <p class="text-danger preview-no-warning">Vista previa disponible solo en versión de escritorio</p>
+            <div class="row mt-5">
+                <div class="btn-group col">
+                    <button type="submit" class="btn btn-primary col" [disabled]="form_profile.invalid && out_action">Guardar</button>
+                </div>
+            </div>
 
-    </div>
-</section>
+        </div>
+    </section>
+</form>
