@@ -1,4 +1,5 @@
 import { Degree } from "./degree";
+import { City } from "./location";
 import { User } from "./user";
 
 const PROFILE_IMAGE_DEFAULT = 'user_profile_default.jpeg';
@@ -12,6 +13,7 @@ export class Profile {
     public image?: string | undefined,
     public wallpaper?: string,
     public description?: string,
+    public location?: City,
     public _id?: string
   ){};
 
@@ -36,6 +38,7 @@ export class Profile {
     this.description = data.description;
     this.image = data.image;
     this.wallpaper = data.wallpaper;
+    this.location = data.location
   }
 
 }

@@ -29,6 +29,21 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-12 form-group">
+                    <label for="country_input" class="form-label">Ubicación</label>
+                    <div class="container">
+                        <div class="row">
+                            <select class="form-select form-control col" id="location_input" formControlName="country" (ngModelChange)="country_selected($event)">
+                               <option *ngFor="let country of countries" [ngValue]="country" [selected]="country._id == profile.location?.country?._id">{{ country.name }}</option>
+                            </select>
+                            <select *ngIf="cities.length!=0" class="form-select form-control col" id="location_input" [(ngModel)]="profile.location" formControlName="city">
+                              <option *ngFor="let city of cities" [ngValue]="city" [selected]="city._id == profile.location?._id">{{ city.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-12">
                     <label>Foto de Perfil</label><br>
                     <input type="file" class="form-control" id="image_input" (change)="change_profile($event)" accept='image/*' formControlName="image">
@@ -57,6 +72,7 @@
                     <div class="info">
                         <h2 class="align-ce">{{ profile.user.firstname }} {{ profile.user.lastname }}</h2> <br>
                         <h4>{{ profile.degree?.name }}</h4>
+                        <h6>{{ profile.location?.name }}, {{ profile.location?.country?.name }}</h6>
                         <div class="description" [innerHTML]="profile.description"></div>
                     </div>
                 </div>
