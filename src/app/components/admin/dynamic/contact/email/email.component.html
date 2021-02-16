@@ -1,0 +1,45 @@
+<h2>Correo Electronico</h2>
+<form>
+    <form [formGroup]="add_email_form">
+        <div class="row">
+
+            <div class="col form-group">
+                <label for="email_input" class="form-label">Direccion de Correo Electronico</label>
+                <input type="email" class="form-control" id="email_input" formControlName="email">
+                <div class="text-danger">
+                    <small>ds</small>
+                </div>
+            </div>
+            <div class="col-auto form-group d-flex align-items-end">
+                <button type="button" class="btn btn-success" [disabled]="add_email_form.invalid">Agregar</button>
+            </div>
+        </div>
+    </form>
+    <ng-template #emails_empty>No hay ningún correo registrado.</ng-template>
+    <table class="table table-striped border rounded" *ngIf="emails.length !=0; else emails_empty">
+        <thead>
+            <tr class="d-flex">
+                <th class="col-auto">#</th>
+                <th class="col">Dirección de Correo</th>
+                <th class="col-2">Validar</th>
+                <th class="col-2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="d-flex align-items-center" *ngFor=" let email of emails; index as i ">
+                <td class="col-auto ">{{ i + 1 }}</td>
+                <td class="col ">
+                    <input type="email" value="{{ email.adress }}" class="w-100 border-0 bg-transparent">
+                </td>
+                <td class="col-2" *ngIf="email.validated; else unvalidated ">Validado</td>
+                <ng-template #unvalidated>
+                    <td class="col-2">Sin validar</td>
+                </ng-template>
+                <td class="col-2 ">
+                    <button type="button " class="btn btn-success m-1 "><i class="fa fa-edit "></i></button>
+                    <button type="button " class="btn btn-danger m-1 "><i class="fa fa-trash "></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

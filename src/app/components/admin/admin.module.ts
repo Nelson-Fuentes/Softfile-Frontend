@@ -7,18 +7,27 @@ import { RouterModule } from '@angular/router';
 
 import { ProfileModule } from './dynamic/profile/profile.module';
 import { DashboardModule } from './dynamic/dashboard/dashboard.module';
+import { ContactComponent } from './dynamic/contact/contact.component';
+import { EmailComponent } from './dynamic/contact/email/email.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
     AdminComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ContactComponent,
+    EmailComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ProfileModule,
-    DashboardModule
+    DashboardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule
   ],
   bootstrap : [  AdminComponent ]
 })
