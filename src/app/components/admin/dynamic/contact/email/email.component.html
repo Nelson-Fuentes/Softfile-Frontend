@@ -1,17 +1,13 @@
 <h2>Correo Electronico</h2>
 <form>
-    <form [formGroup]="add_email_form">
+    <form [formGroup]="add_email_form" (ngSubmit)="add_email()">
         <div class="row">
-
             <div class="col form-group">
                 <label for="email_input" class="form-label">Direccion de Correo Electronico</label>
-                <input type="email" class="form-control" id="email_input" formControlName="email">
-                <div class="text-danger">
-                    <small>ds</small>
-                </div>
+                <input type="email" class="form-control" id="email_input" formControlName="email" [ngClass]="{ 'is-invalid' : email_field_is_valid(add_email_form)}">
             </div>
             <div class="col-auto form-group d-flex align-items-end">
-                <button type="button" class="btn btn-success" [disabled]="add_email_form.invalid">Agregar</button>
+                <button type="button" class="btn btn-success" [disabled]="add_email_form.invalid" (click)="add_email()">Agregar</button>
             </div>
         </div>
     </form>
@@ -19,27 +15,30 @@
     <table class="table table-striped border rounded" *ngIf="emails.length !=0; else emails_empty">
         <thead>
             <tr class="d-flex">
-                <th class="col-auto">#</th>
+                <th class="col-1">#</th>
                 <th class="col">Dirección de Correo</th>
                 <th class="col-2">Validar</th>
                 <th class="col-2">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="d-flex align-items-center" *ngFor=" let email of emails; index as i ">
-                <td class="col-auto ">{{ i + 1 }}</td>
-                <td class="col ">
-                    <input type="email" value="{{ email.adress }}" class="w-100 border-0 bg-transparent">
+            <tr class="d-flex" *ngFor=" let email of emails | paginate: { itemsPerPage: 5, currentPage: current_page } ; index as i">
+                <td class="col-1 d-flex align-items-center">{{ i + 1 + 5*(current_page-1) }}</td>
+                <td class="col d-flex align-items-center">
+                    <input type="email" [(ngModel)]="email.adress" name="adress{{email._id}}" class="w-100 border-0 bg-transparent">
                 </td>
-                <td class="col-2" *ngIf="email.validated; else unvalidated ">Validado</td>
+                <td class="col-2 d-flex align-items-center" *ngIf="email.validated; else unvalidated ">Validado</td>
                 <ng-template #unvalidated>
-                    <td class="col-2">Sin validar</td>
+                    <td class="col-2 d-flex align-items-center">Sin validar</td>
                 </ng-template>
-                <td class="col-2 ">
-                    <button type="button " class="btn btn-success m-1 "><i class="fa fa-edit "></i></button>
-                    <button type="button " class="btn btn-danger m-1 "><i class="fa fa-trash "></i></button>
+                <td class="col-2 d-flex align-items-center  ">
+                    <button type="button " class="btn btn-success m-1 " [disabled]="get_form_control_for_email(email).invalid" (click)="update_email_auth(email)"><i class="fa fa-edit "></i></button>
+                    <button class="btn btn-danger m-1 " (click)="delete_email(email, i+5*(current_page-1))"><i class="fa fa-trash "></i></button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="d-flex flex-row-reverse">
+        <pagination-controls (pageChange)="current_page = $event" previousLabel="" nextLabel=""></pagination-controls>
+    </div>
 </form>

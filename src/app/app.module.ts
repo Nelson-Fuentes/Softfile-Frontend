@@ -11,6 +11,7 @@ import { AdminModule } from './components/admin/admin.module';
 import { SignModule } from './components/sign/sign.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BriefcaseComponent } from './components/briefcase/briefcase.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { BriefcaseComponent } from './components/briefcase/briefcase.component';
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

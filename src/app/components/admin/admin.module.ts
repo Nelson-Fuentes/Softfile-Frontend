@@ -11,6 +11,7 @@ import { ContactComponent } from './dynamic/contact/contact.component';
 import { EmailComponent } from './dynamic/contact/email/email.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BrowserModule } from '@angular/platform-browser';
     DashboardModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule
+    BrowserModule,
+    NgxPaginationModule
   ],
   bootstrap : [  AdminComponent ]
 })
