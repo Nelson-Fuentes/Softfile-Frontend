@@ -1,0 +1,59 @@
+<h2>Números Telefonicos</h2>
+<form [formGroup]="add_phone_form">
+    <div class="row">
+        <div class="col-2 form-group">
+            <label for="code">Codigo</label>
+            <select class="form-control" [(ngModel)]="add_phone.code" formControlName="code" [ngClass]="{ 'is-invalid' : phone_code_field_is_valid(add_phone_form)}">
+              <option *ngFor="let phone_code of phone_codes" [ngValue]="phone_code">
+                <div class="row">
+                  <div class="col-2">{{ phone_code.iso3 }}</div>
+                  <div class="col-1"> | </div>
+                  <div class="col">{{ phone_code.code }}</div>
+                </div>
+                </option>
+            </select>
+        </div>
+        <div class="col form-group">
+            <label for="phone_input" class="form-label">Número</label>
+            <input type="phone" class="form-control" id="phone_input" [(ngModel)]="add_phone.number" formControlName="number" [ngClass]="{ 'is-invalid' : phone_number_field_is_valid(add_phone_form)}">
+        </div>
+        <div class="col-auto form-group d-flex align-items-end">
+            <button type="button" class="btn btn-success" [disabled]="add_phone_form.invalid">Agregar</button>
+        </div>
+    </div>
+</form>
+<ng-template #phones_empty>No hay ningún correo registrado.</ng-template>
+<table class="table table-striped border rounded" *ngIf="phone_codes.length !=0; else phones_empty">
+    <thead>
+        <tr class="d-flex">
+            <th class="col-1">#</th>
+            <th class="col-2">Región</th>
+            <th class="col-2">Codigo</th>
+            <th class="col">Número</th>
+            <th class="col-2">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="d-flex" *ngFor=" let phone of phone_numbers | paginate: { itemsPerPage: 5, currentPage: current_page } ; index as i">
+            <td class="col-1 d-flex align-items-center">{{ i + 1 + 5 * (current_page-1) }}</td>
+            <td class="col-2 d-flex align-items-center">
+                <select class="bg-transparent border-0 w-100" [(ngModel)]="phone.code" [compareWith]="compare_codes" name="code-{{ phone._id }}">
+                  <option *ngFor="let phone_code of phone_codes" [ngValue]="phone_code" [selected]="phone_code._id == phone.code?._id ">
+                    {{ phone_code.iso3 }}
+                  </option>
+              </select>
+            </td>
+            <td class="col-2 d-flex align-items-center text-center w-100">{{ phone.code?.code }}</td>
+            <td class="col d-flex align-items-center">
+                <input type="phone" [(ngModel)]="phone.number" name="phone{{phone._id}}" class="w-100 border-0 bg-transparent">
+            </td>
+            <td class="col-2 d-flex align-items-center">
+                <button type="button " class="btn btn-success m-1 "><i class="fa fa-edit "></i></button>
+                <button class="btn btn-danger m-1"><i class="fa fa-trash "></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex flex-row-reverse">
+    <pagination-controls (pageChange)="current_page = $event" previousLabel="" nextLabel=""></pagination-controls>
+</div>

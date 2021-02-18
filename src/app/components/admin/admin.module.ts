@@ -12,6 +12,7 @@ import { EmailComponent } from './dynamic/contact/email/email.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PhoneComponent } from './dynamic/contact/phone/phone.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HeaderComponent,
     SidebarComponent,
     ContactComponent,
-    EmailComponent
+    EmailComponent,
+    PhoneComponent
   ],
   imports: [
     CommonModule,
