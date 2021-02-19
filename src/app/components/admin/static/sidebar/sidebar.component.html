@@ -11,14 +11,14 @@
     </div>
     <div class="row mt-4 d-flex align-items-center">
         <div class="col-12 item-menu d-flex align-items-center">
-            <p class="p-3 rounded-pill search-box d-flex align-items-center"><i class="fa fa-search pl-3 pr-3"></i><input type="text" placeholder="Buscar"></p>
+            <p class="p-2 rounded-pill search-box d-flex align-items-center"><i class="fa fa-search pl-3 pr-3"></i><input type="text" placeholder="Buscar"></p>
         </div>
     </div>
     <div class="menu-item-box">
         <div *ngFor="let item of resources" class="row">
             <div class="col-12 item-menu align-middle">
                 <a [routerLink]="[ item.url ]" routerLinkActive="active">
-                    <p class="p-3 rounded-pill"><i class="{{ item.icon_class }} pl-3 pr-3"></i>{{ item.label }}</p>
+                    <p class="p-2 rounded-pill"><i class="{{ item.icon_class }} pl-3 pr-3"></i>{{ item.label }}</p>
                 </a>
             </div>
         </div>
