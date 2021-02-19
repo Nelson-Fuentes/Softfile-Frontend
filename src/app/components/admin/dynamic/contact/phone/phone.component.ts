@@ -67,6 +67,57 @@ export class PhoneComponent implements OnInit {
     return false;
   }
 
+  public add_phone_fun(){
+    this.phoneService.add_phone_auth(this.add_phone).subscribe(
+      phone => {
+        this.phone_numbers.push(phone);
+        this.toastrService.success(undefined, 'Registro exitoso');
+        this.add_phone = new PhoneNumber('');
+        this.add_phone_form.reset();
+      }, err => {
+        this.toastrService.error(err.error, 'Ocurrio un error');
+      }
+    );
+  }
+
+  public delete_phone(i: number){
+    const phone: PhoneNumber = this.phone_numbers[i];
+    if (confirm('¿Estas seguro de eliminar este telefono?')){
+      this.phoneService.delete_phone_auth(phone).subscribe(
+        phone_deleted => {
+          this.phone_numbers.splice(i, 1);
+          this.toastrService.success(undefined, 'El telefono a sido eliminado.')
+        }, err => {
+          this.toastrService.error(err.error, 'Ocurrio un error');
+        }
+      );
+    }
+  }
+
+
+  public validate_phone(phone: PhoneNumber){
+    const number_control: FormControl = new FormControl('', Validators.required);
+    const code_control: FormControl= new FormControl('', Validators.required);
+    number_control.setValue(phone.number);
+    code_control.setValue(phone.code);
+    return number_control.valid && code_control.valid;
+  }
+
+  public update_phone(phone: PhoneNumber){
+    this.phoneService.update_phone_auth(phone).subscribe(
+      phone_updated => {
+        this.toastrService.success(undefined, 'Telefono Actualizado');
+        phone.number = phone_updated.number;
+        phone._id = phone_updated._id;
+        phone.code = phone.code;
+        phone.user = phone.user;
+      }, err => {
+        this.toastrService.error(err.error, 'Ocurrio un error');
+      }
+    );
+
+  }
+
   ngOnInit(): void {
   }
 

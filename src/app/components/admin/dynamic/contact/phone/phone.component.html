@@ -18,11 +18,11 @@
             <input type="phone" class="form-control" id="phone_input" [(ngModel)]="add_phone.number" formControlName="number" [ngClass]="{ 'is-invalid' : phone_number_field_is_valid(add_phone_form)}">
         </div>
         <div class="col-auto form-group d-flex align-items-end">
-            <button type="button" class="btn btn-success" [disabled]="add_phone_form.invalid">Agregar</button>
+            <button type="button" class="btn btn-success" [disabled]="add_phone_form.invalid" (click)="add_phone_fun()">Agregar</button>
         </div>
     </div>
 </form>
-<ng-template #phones_empty>No hay ningún correo registrado.</ng-template>
+<ng-template #phones_empty>No hay ningún teleono registrado.</ng-template>
 <table class="table table-striped border rounded" *ngIf="phone_codes.length !=0; else phones_empty">
     <thead>
         <tr class="d-flex">
@@ -48,8 +48,8 @@
                 <input type="phone" [(ngModel)]="phone.number" name="phone{{phone._id}}" class="w-100 border-0 bg-transparent">
             </td>
             <td class="col-2 d-flex align-items-center">
-                <button type="button " class="btn btn-success m-1 "><i class="fa fa-edit "></i></button>
-                <button class="btn btn-danger m-1"><i class="fa fa-trash "></i></button>
+                <button type="button " class="btn btn-success m-1" [disabled]="!validate_phone(phone)" (click)="update_phone(phone)"><i class="fa fa-edit "></i></button>
+                <button class="btn btn-danger m-1" (click)="delete_phone(i+5*(current_page-1))"><i class="fa fa-trash "></i></button>
             </td>
         </tr>
     </tbody>

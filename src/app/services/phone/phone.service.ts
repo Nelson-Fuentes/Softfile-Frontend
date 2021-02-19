@@ -24,4 +24,28 @@ export class PhoneService {
     const headers = new HttpHeaders().set('Authorization', 'token ' + token );
     return this.httpClient.get<PhoneNumber[]>(base_api_url, { headers: headers } );
   }
+
+  public add_phone_auth(phone: PhoneNumber){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.post<PhoneNumber>(base_api_url, {
+      number: phone.number,
+      code_id: phone.code?._id
+     }, { headers: headers } );
+  }
+
+  public delete_phone_auth(phone: PhoneNumber){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.delete<PhoneNumber>(base_api_url + phone._id,{ headers: headers } );
+  }
+
+  public update_phone_auth(phone: PhoneNumber){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.put<PhoneNumber>(base_api_url + phone._id, {
+      number: phone.number,
+      code_id: phone.code?._id
+     }, { headers: headers } );
+  }
 }
