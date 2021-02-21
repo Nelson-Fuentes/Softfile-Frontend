@@ -1,0 +1,55 @@
+<h2>Redes Sociales</h2>
+<form [formGroup]="socialnet_user_form">
+    <div class="row">
+        <div class="col-3 form-group">
+            <label for="socialnet">Red Social</label>
+            <select class="form-control" name="socialnet" formControlName="socialnet" [(ngModel)]="socialnet_user_object.socialnet" [compareWith]="compare_social" [ngClass]="{'is-invalid': socialnet_field_is_valid(socialnet_user_form)}">
+              <option *ngFor="let socialnet of socialnets_default" [ngValue]="socialnet">
+                <div class="row">
+                  <div class="col">{{ socialnet.name }}</div>
+                </div>
+              </option>
+            </select>
+        </div>
+        <div class="col form-group">
+            <label for="link_input" class="form-label">Enlace a redes sociales</label>
+            <input type="text" class="form-control" id="link_input" name="link" formControlName="link" [(ngModel)]="socialnet_user_object.link" [ngClass]="{'is-invalid': socialnet_user_link_field_is_valid(socialnet_user_form)}">
+        </div>
+        <div class="col-auto form-group d-flex align-items-end">
+            <button type="button" class="btn btn-success" [disabled]="socialnet_user_form.invalid" (click)="create_socialnet_user(socialnet_user_object)">Agregar</button>
+        </div>
+    </div>
+</form>
+<ng-template #socialnets_empty>No hay redes sociales registradas.</ng-template>
+<table class="table table-striped border rounded" *ngIf="socialnets_user.length !=0; else socialnets_empty">
+    <thead>
+        <tr class="d-flex">
+            <th class="col-1">#</th>
+            <th class="col-2">Red Social</th>
+            <th class="col">Enlace</th>
+            <th class="col-2">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="d-flex" *ngFor=" let socialnet_user of socialnets_user | paginate: { itemsPerPage: 5, currentPage: current_page } ; index as i">
+            <td class="col-1 d-flex align-items-center">{{ i + 1 + 5 * (current_page-1) }}</td>
+            <td class="col-2 d-flex align-items-center">
+                <select class="bg-transparent border-0 w-100" [(ngModel)]="socialnet_user.socialnet" [compareWith]="compare_social" name="social-{{ socialnet_user._id }}">
+                  <option *ngFor="let socialnet of socialnets_default" [ngValue]="socialnet">
+                    {{ socialnet.name }}
+                  </option>
+              </select>
+            </td>
+            <td class="col d-flex align-items-center">
+                <input type="phone" [(ngModel)]="socialnet_user.link" name="social_user{{socialnet_user._id}}" class="w-100 border-0 bg-transparent">
+            </td>
+            <td class="col-2 d-flex align-items-center">
+                <button type="button " class="btn btn-success m-1" (click)="update_socialnet_user(socialnet_user)"><i class="fa fa-edit "></i></button>
+                <button class="btn btn-danger m-1" (click)="delete_socialnet_user(i + 5 * (current_page-1))"><i class="fa fa-trash "></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex flex-row-reverse">
+    <pagination-controls (pageChange)="current_page = $event" previousLabel="" nextLabel=""></pagination-controls>
+</div>

@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PhoneComponent } from './dynamic/contact/phone/phone.component';
+import { SocialnetComponent } from './dynamic/contact/socialnet/socialnet.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PhoneComponent } from './dynamic/contact/phone/phone.component';
     SidebarComponent,
     ContactComponent,
     EmailComponent,
-    PhoneComponent
+    PhoneComponent,
+    SocialnetComponent
   ],
   imports: [
     CommonModule,
