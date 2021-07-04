@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit {
   public resources: Resource [] = [
     new Resource ("Dashboard", "fa fa-bar-chart", "dashboard"),
     new Resource ("Contacto", "fa fa-id-card", "contact"),
+    new Resource ("Estudios", "fa fa-graduation-cap", "study"),
   ]
 
   @Output() full_screen_event = new EventEmitter<boolean>();

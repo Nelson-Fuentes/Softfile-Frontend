@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PhoneComponent } from './dynamic/contact/phone/phone.component';
 import { SocialnetComponent } from './dynamic/contact/socialnet/socialnet.component';
+import { StudyComponent } from './dynamic/study/study.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SocialnetComponent } from './dynamic/contact/socialnet/socialnet.compon
     ContactComponent,
     EmailComponent,
     PhoneComponent,
-    SocialnetComponent
+    SocialnetComponent,
+    StudyComponent
   ],
   imports: [
     CommonModule,
