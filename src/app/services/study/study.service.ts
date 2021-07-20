@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { StudyCenter, StudyCenterUser } from 'src/app/models/study';
+import { StudyCenter} from 'src/app/models/study';
+
+const base_api_url = environment.softfile_api_url + "studycenter/";
 
 @Injectable({
   providedIn: 'root'
@@ -12,32 +14,39 @@ export class StudyService {
     private httpClient: HttpClient
   ) { }
 
-  // this arr will be fill with test data until services is implemented
-  test_study_center: StudyCenter [] = [{name: 'study center1', _id: 'first_id'}, {name: 'study center2', _id: 'second_id'}]
-  test_study_center_user: StudyCenterUser [] = [{study_center: this.test_study_center[0]}, {study_center: this.test_study_center[1]}]
-  public get_study_centers(){
-    return this.test_study_center;
+  public get_study_centers_default(){
+    return this.httpClient.get<StudyCenter[]>(base_api_url+'default');
   }
 
-  public get_study_center_user(){
-    return this.test_study_center_user;
-  }
-  
-  public add_study_center(study_center: StudyCenter){
-    this.test_study_center.push(study_center);
-    console.log("added!");
+  public get_study_centers_auth(){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.get<StudyCenter[]>(base_api_url, { headers: headers })
   }
 
-  public delete_study_center(study_center: StudyCenter){
-    this.test_study_center = this.test_study_center.filter(item=>item._id != study_center._id);
-    console.log("deleted!");
+  public create_study_center_auth(study_center:StudyCenter){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.post<StudyCenter>(base_api_url, {
+
+      name: study_center.name
+    } ,{ headers: headers })
   }
 
-  // now it works as a GET method
-  public update_study_center(study_center: StudyCenter){
-    console.log("updated!");
-    return this.test_study_center;
+  public delete_study_center_auth(study_center:StudyCenter){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.delete<StudyCenter>(base_api_url + study_center._id, { headers: headers })
   }
+
+  public update_study_center_auth(study_center:StudyCenter){
+    const token = localStorage.getItem(environment.token_authentication_key);
+    const headers = new HttpHeaders().set('Authorization', 'token ' + token );
+    return this.httpClient.put<StudyCenter>(base_api_url + study_center._id, {
+      name: study_center.name
+    } ,{ headers: headers })
+  }
+
 
 }
 

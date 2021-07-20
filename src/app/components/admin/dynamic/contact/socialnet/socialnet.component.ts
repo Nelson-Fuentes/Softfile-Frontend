@@ -76,7 +76,7 @@ export class SocialnetComponent implements OnInit {
         this.socialnet_user_object = new SocialnetUser('', new Socialnet('', ''));
         this.socialnet_user_form.reset();
       }, err => {
-        this.toastrService.error(err.error, 'Ocurrio un erro');
+        this.toastrService.error(err.error, 'Ocurrio un error');
       }
     );
   }
